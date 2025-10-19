@@ -1,0 +1,82 @@
+/* styles.css
+   Portfolio sinh viên CNTT
+   - Sử dụng Flexbox và Grid
+   - Có animation/CSS3 transform
+   - Comment rõ ràng để chấm điểm Clean Code & Comment
+*/
+
+/* Reset cơ bản */
+* {box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+html, body {height: 100%;}
+body {background: teal; color: #222; line-height: 1.5;}
+
+/* Navbar */
+.site-header {background: darkturquoise ; border-bottom: 1px solid #eee;}
+.navbar {display:flex; align-items:center; justify-content:space-between; padding: 16px 24px; max-width:1200px; margin:0 auto;}
+.brand {font-weight:700; letter-spacing:0.4px;}
+.nav-links {list-style:none; display:flex; gap:14px;}
+.nav-links a {text-decoration:none; color:#333; padding:6px 8px; border-radius:6px;}
+.nav-links a:hover {background:#f0f0ff; transform:translateY(-2px); transition:all 200ms ease;}
+
+/* Banner */
+.banner {display:flex; align-items:center; gap:24px; max-width:1200px; margin:24px auto; padding:24px;background: paleturquoise}
+.banner-content {flex:1;}
+.banner-content h1 {font-size:2rem; margin-bottom:8px;}
+.banner-content p {opacity:0.8; margin-bottom:14px;}
+.btn {display:inline-block; text-decoration:none; padding:10px 16px; background:#6C5CE7; color:white; border-radius:8px; transition:transform .2s ease;}
+.btn:hover {transform:translateY(-4px) scale(1.02);}
+
+/* Banner image with subtle animation */
+.banner-image img {width:320px; max-width:36vw; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.08); transform-origin:center; animation:float 6s ease-in-out infinite;}
+@keyframes float {
+  0% {transform: translateY(0px) rotate(-1deg);}
+  50% {transform: translateY(-8px) rotate(1deg);}
+  100% {transform: translateY(0px) rotate(-1deg);}
+}
+
+/* Main container and cards */
+.container {max-width:1200px; margin: 0 auto; padding: 16px;}
+.card {background:white; border-radius:10px; padding:18px; margin-bottom:18px; box-shadow:0 6px 20px rgba(18,18,18,0.03);}
+
+/* About section layout */
+.about {display:flex; gap:18px; align-items:center;}
+.avatar img {width:220px; height:auto; border-radius:12px; object-fit:cover;}
+
+/* Grid 2 columns (responsive) */
+.grid-2 {display:grid; grid-template-columns: 1fr 1fr; gap:18px;}
+@media (max-width:860px){ .grid-2 {grid-template-columns:1fr;} .about{flex-direction:column; text-align:center;} .banner{flex-direction:column-reverse; align-items:center;} .banner-image img{max-width:280px;} .nav-links{display:none;} }
+
+/* Skills list and bars */
+.skills-list {list-style:disc; margin-left:18px; margin-top:8px;}
+.skill-bars .bar {background:#eee; border-radius:8px; margin-bottom:10px; overflow:hidden;}
+.skill-bars .bar span {display:block; padding:8px; background:linear-gradient(90deg,#6C5CE7,#00B894); color:white; border-radius:8px; transform-origin:left; transition:width .8s ease;}
+
+/* Projects */
+.projects .project-list {display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.project {display:flex; gap:12px; align-items:flex-start;}
+.project img {width:180px; height:110px; object-fit:cover; border-radius:8px;}
+.p-body h4 {margin-bottom:6px;}
+@media (max-width:860px){ .projects .project-list {grid-template-columns:1fr;} .project{flex-direction:column;} .project img{width:100%; height:auto;} }
+
+/* Footer */
+.footer {text-align:center; color:#0c0101; padding:12px 0; font-size:0.9rem;}
+
+/* Small utilities */
+a {color:inherit;}
+h2, h3 {margin-bottom:8px;}
+ul {margin-top:8px;}
+
+/* Accessibility focus states for keyboard users */
+a:focus {outline:3px solid #cfeefe; outline-offset:2px;}
+
+/* On-load animation for skill bars (simple CSS-only using animation delays) */
+.skill-bars .bar span {width:0;}
+.skill-bars .bar:nth-child(1) span {animation:grow 1s forwards 0.2s;}
+.skill-bars .bar:nth-child(2) span {animation:grow 1s forwards 0.4s;}
+.skill-bars .bar:nth-child(3) span {animation:grow 1s forwards 0.6s;}
+@keyframes grow {to {width: var(--w, 80%);}}
+
+/* Set the widths (these are the 'scores' visualized) */
+.skill-bars .bar:nth-child(1) span {--w:90%;}
+.skill-bars .bar:nth-child(2) span {--w:75%;}
+.skill-bars .bar:nth-child(3) span {--w:60%;}
